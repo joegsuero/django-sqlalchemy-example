@@ -29,6 +29,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.SQLAlchemySessionMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -80,6 +81,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    'EXCEPTION_HANDLER': 'core.exceptions.sqlalchemy_exception_handler',
 }
 
 LOGGING = {
@@ -101,3 +103,9 @@ LOGGING = {
         },
     },
 }
+
+# SQLAlchemy pool settings (optional overrides)
+SA_POOL_SIZE = 10
+SA_MAX_OVERFLOW = 20
+SA_POOL_TIMEOUT = 30
+SA_POOL_RECYCLE = 1800
