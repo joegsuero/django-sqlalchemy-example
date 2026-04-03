@@ -11,7 +11,7 @@ from typing import List, Optional, Tuple
 from sqlalchemy import select, func, and_
 from sqlalchemy.orm import Session, joinedload, selectinload
 
-from core.repository import Repository
+from sa_core.repository import Repository
 from blog.models import Article, Author, Tag, article_tags
 
 

@@ -1,5 +1,5 @@
 """
-core/repository.py
+sa_core/repository.py
 
 Generic repository base class that provides typed CRUD operations
 for any SQLAlchemy model. Extend it per-model to add custom queries.

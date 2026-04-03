@@ -1,10 +1,10 @@
 """
-core/middleware.py
+sa_core/middleware.py
 
 Attaches a SQLAlchemy session to every request, commits on success,
 rolls back on exception, and closes on completion.
 """
-from core.database import SessionLocal
+from sa_core.database import SessionLocal
 
 
 class SQLAlchemySessionMiddleware:

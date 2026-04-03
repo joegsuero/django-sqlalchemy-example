@@ -38,7 +38,7 @@ if config.config_file_name is not None:
 
 def get_url() -> str:
     """Get DB URL from Django settings (single source of truth)."""
-    from core.database import get_sync_url
+    from sa_core.database import get_sync_url
     return get_sync_url()
 
 

@@ -1,5 +1,5 @@
 """
-core/viewsets.py
+sa_core/viewsets.py
 
 Generic DRF ViewSet that integrates with SQLAlchemy sessions and the
 Repository pattern. Subclasses declare their repository and serializer;
@@ -13,8 +13,8 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.viewsets import ViewSet
 
-from core.database import get_session
-from core.repository import Repository
+from sa_core.database import get_session
+from sa_core.repository import Repository
 
 
 class SAViewSet(ViewSet):

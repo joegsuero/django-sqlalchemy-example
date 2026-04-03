@@ -7,8 +7,8 @@ Business logic lives in repositories. Views just wire HTTP to repo calls.
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from core.database import get_session
-from core.viewsets import SAViewSet
+from sa_core.database import get_session
+from sa_core.viewsets import SAViewSet
 from blog.repository import ArticleRepository, AuthorRepository, TagRepository
 from blog.serializers import (
     ArticleListSerializer,

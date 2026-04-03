@@ -1,5 +1,5 @@
 """
-core/database.py
+sa_core/database.py
 
 Central SQLAlchemy engine and session management.
 Supports sync and async, SQLite and PostgreSQL.

@@ -1,5 +1,5 @@
 """
-core/exceptions.py
+sa_core/exceptions.py
 
 Maps SQLAlchemy exceptions to DRF-compatible exceptions.
 """
@@ -21,7 +21,7 @@ def sqlalchemy_exception_handler(exc, context):
 
     Register in settings:
         REST_FRAMEWORK = {
-            "EXCEPTION_HANDLER": "core.exceptions.sqlalchemy_exception_handler"
+            "EXCEPTION_HANDLER": "sa_core.exceptions.sqlalchemy_exception_handler"
         }
     """
     # Handle SQLAlchemy-specific exceptions first

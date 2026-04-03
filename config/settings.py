@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'sa_core',
     'blog',
 ]
 
@@ -29,7 +30,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'core.middleware.SQLAlchemySessionMiddleware',
+    'sa_core.middleware.SQLAlchemySessionMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -81,7 +82,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
-    'EXCEPTION_HANDLER': 'core.exceptions.sqlalchemy_exception_handler',
+    'EXCEPTION_HANDLER': 'sa_core.exceptions.sqlalchemy_exception_handler',
 }
 
 LOGGING = {
