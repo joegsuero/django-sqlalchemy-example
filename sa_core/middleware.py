@@ -1,16 +1,25 @@
 """
 sa_core/middleware.py
 
-Attaches a SQLAlchemy session to every request, commits on success,
-rolls back on exception, and closes on completion.
+Middleware opcional que adjunta una sesión SQLAlchemy a cada request.
+Útil para vistas Django clásicas que necesiten acceso via request.sa_session.
+
+NO incluir en MIDDLEWARE si todos los accesos a la BD se hacen
+con `with get_session()` desde los ViewSets (que es el patrón recomendado).
+
+Para activarlo, agregarlo en config/settings.py:
+    MIDDLEWARE = [
+        ...
+        'sa_core.middleware.SQLAlchemySessionMiddleware',
+    ]
 """
 from sa_core.database import SessionLocal
 
 
 class SQLAlchemySessionMiddleware:
     """
-    Manages SQLAlchemy session lifecycle per HTTP request.
-    Attach it AFTER Django's auth middleware so request.user is available.
+    Gestiona el ciclo de vida de la sesión SQLAlchemy por request HTTP.
+    Hace commit en respuestas exitosas, rollback en excepciones.
     """
 
     def __init__(self, get_response):
@@ -28,6 +37,5 @@ class SQLAlchemySessionMiddleware:
             raise
         finally:
             session.close()
-            # Clean up reference to avoid accidental use after close
             if hasattr(request, "sa_session"):
                 del request.sa_session

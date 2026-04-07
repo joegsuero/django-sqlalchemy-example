@@ -174,6 +174,42 @@ class ArticleRepository(Repository[Article]):
             .values(view_count=Article.view_count + 1)
         )
 
+    def create_article(self, session: Session, data: dict) -> Article:
+        """
+        Crea un artículo y asigna sus tags.
+        Separa `tag_ids` del resto de los campos antes de crear la instancia.
+        """
+        tag_ids = data.pop("tag_ids", [])
+        article = Article(**data)
+        session.add(article)
+        session.flush()  # necesario para obtener article.id antes del commit
+
+        if tag_ids:
+            tags = session.execute(
+                select(Tag).where(Tag.id.in_(tag_ids))
+            ).scalars().all()
+            article.tags = tags
+
+        return article
+
+    def update_article(self, session: Session, article: Article, data: dict) -> Article:
+        """
+        Actualiza un artículo y reemplaza sus tags si se proporcionan.
+        """
+        tag_ids = data.pop("tag_ids", None)
+
+        for key, value in data.items():
+            setattr(article, key, value)
+
+        if tag_ids is not None:
+            tags = session.execute(
+                select(Tag).where(Tag.id.in_(tag_ids))
+            ).scalars().all()
+            article.tags = tags
+
+        session.flush()
+        return article
+
 
 class AuthorRepository(Repository[Author]):
     model = Author

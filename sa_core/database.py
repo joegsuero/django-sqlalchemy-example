@@ -121,14 +121,12 @@ SessionLocal: sessionmaker[Session] = sessionmaker(
     bind=engine,
     autocommit=False,
     autoflush=False,
-    expire_on_commit=False,
 )
 
 AsyncSessionLocal: async_sessionmaker[AsyncSession] = async_sessionmaker(
     bind=async_engine,
     autocommit=False,
     autoflush=False,
-    expire_on_commit=False,
 )
 
 
@@ -189,15 +187,3 @@ def check_connection() -> bool:
     except Exception as e:
         logger.error("Database connection failed: %s", e)
         return False
-
-
-# Backwards compatibility
-def get_database_url() -> str:
-    """Build SQLAlchemy connection string from Django settings."""
-    return get_sync_url()
-
-
-def get_db_session() -> Session:
-    """Get a new SQLAlchemy session. Caller is responsible for closing."""
-    return SessionLocal()
-
