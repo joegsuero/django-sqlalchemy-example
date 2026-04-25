@@ -1,6 +1,6 @@
 # Django + SQLAlchemy Integration Demo
 
-This project demonstrates a robust integration of SQLAlchemy 2.0 with Django using a hybrid approach: Django handles configuration and DRF, while SQLAlchemy manages models and data access through the Repository pattern.
+This project demonstrates a robust integration of SQLAlchemy 2.0 with Django using a hybrid approach: Django handles configuration and DRF, while SQLAlchemy manages models and data access through the Repository pattern. For more details, see the accompanying blog post [here](https://joegsuero.medium.com/sqlalchemy-for-django-developers-9cb3452e796a).
 
 ## Key Features
 
